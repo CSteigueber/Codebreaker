@@ -1,7 +1,6 @@
 const str="vwduwljudeehghyhubwklqjlfrxogilqgsohdvhuhwxuqdqbeoxhsulqwviruydxowdqgdodupghvljqedvhgrqzklfkedqnbrxghflghrqldpvhwwlqjxsvdihkrxvhfr";
 
 function countLetters (str){
-    let abc="a b c d e f h i j k l m n o p q r s t u v w x y z".split(" ");
     let res=[];
     for (let i=0;i<26;i++){
         res[i]=0;
@@ -15,6 +14,21 @@ function countLetters (str){
     }
     console.log(abc);
     console.log(res);
+    return res.join(" ");
 }
+const abc="a b c d e f h i j k l m n o p q r s t u v w x y z".split(" ");
 
-countLetters(str);
+(function main(){
+    document.getElementById("run").addEventListener("click",function(){
+        ;
+        let node=document.createTextNode(countLetters(str));
+        let p=document.createElement("p");
+        p.appendChild(node);
+        document.getElementById("output").appendChild(p);
+        node=document.createTextNode(abc.join(" "));
+        p=document.createElement("p");
+        p.appendChild(node);
+        document.getElementById("output").appendChild(p);
+    })
+
+})();
