@@ -39,11 +39,13 @@ function vigenere_cipher (text,key,direction){
         let key=document.getElementById("key").value;
         let cipher=vigenere_cipher(plain,key,"+");
         document.getElementById("cipher").value=cipher;
+        document.getElementById("output").innerHTML=cipher;
     })
     document.getElementById("decipher").addEventListener("click", function decipher (){
         let cipher=document.getElementById("cipher").value;
         let key=document.getElementById("key").value;
         let plain=vigenere_cipher(cipher,key,"-");
         document.getElementById("plain").value=plain;
+        document.getElementById("output").innerHTML=plain;
     })
 })();
