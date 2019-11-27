@@ -49,6 +49,7 @@ const abc="a b c d e f g h i j k l m n o p q r s t u v w x y z".split(" ");
 
 (function main(){
     document.getElementById("frequency").addEventListener("click",function(){
+        document.getElementById("output").innerHTML="";
         const str=document.getElementById("input").value;
         let res=countLetters(str);
         shift=abc.indexOf("e")-res.indexOf(findMax(res));
@@ -64,6 +65,15 @@ const abc="a b c d e f g h i j k l m n o p q r s t u v w x y z".split(" ");
         appendTo(`Estimated shift: ${shift}`,"output");
         let plain=ceasarCipher(str,shift);
         appendTo(plain,"output");
+    })
+    document.getElementById("brutus").addEventListener("click", function (){
+        document.getElementById("output").innerHTML="";
+        let cipher=document.getElementById("input").value;
+        let plain=""
+        for (let i=0;i<26;i++){
+            plain=ceasarCipher(cipher,i);
+            appendTo(`Shift=${i}:${plain}`,"output");
+        }
     })
 
 })();
