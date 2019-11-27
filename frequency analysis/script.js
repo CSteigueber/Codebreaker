@@ -24,26 +24,27 @@ const findMax=(arr)=>{
 
 const ceasarCipher =(str,key)=>{
     let res="";
-    for (c in str){
+    for (let i=0; i<str.length;i++){
+        let c=str[i];
         let num=c.charCodeAt(0);
         switch (true){
             case (((num>=65)&&(num+key<=90))||((num>=97)&&(num+key<=122))): 
-                num+=shift; 
-                break;
-            case (((num-key>=65)&&(num<=90))||((num-key>=97)&&(num<=122))): 
-                num-=shift; 
+                num+=key; 
                 break;
             case (((num>=65)&&(num<=90))||((num>=97)&&(num<=122))): 
-                num+=(shift-26); 
-                break;
-            case (((num>=65)&&(num<=90))||((num>=97)&&(num<=122))): 
-                num-=(key-26); 
+                num+=(key-26); 
                 break;
         }
         res+=String.fromCharCode(num);
     }
+    return res;
 }
-
+const appendTo=(content,id)=>{
+    let node=document.createTextNode(content);
+    let p=document.createElement("p");
+    p.appendChild(node);
+    document.getElementById(id).appendChild(p);
+}
 const abc="a b c d e f g h i j k l m n o p q r s t u v w x y z".split(" ");
 
 (function main(){
@@ -53,21 +54,16 @@ const abc="a b c d e f g h i j k l m n o p q r s t u v w x y z".split(" ");
         shift=abc.indexOf("e")-res.indexOf(findMax(res));
         if (shift<0){
             shift+=26;
-
         }
-        let node=document.createTextNode("Check your console!");
-        let p=document.createElement("p");
-        p.appendChild(node);
-        document.getElementById("output").appendChild(p);
-        node=document.createTextNode(`Estimated shift: ${shift}`);
-        p=document.createElement("p");
-        p.appendChild(node);
-        document.getElementById("output").appendChild(p);
         let arr=[];
         for (let i=0;i<res.length;i++){
             arr.push(`${abc[i]} : ${res[i]}`);
         }
         console.log(arr);
+        appendTo("Check your console!","output");
+        appendTo(`Estimated shift: ${shift}`,"output");
+        let plain=ceasarCipher(str,shift);
+        appendTo(plain,"output");
     })
 
 })();
